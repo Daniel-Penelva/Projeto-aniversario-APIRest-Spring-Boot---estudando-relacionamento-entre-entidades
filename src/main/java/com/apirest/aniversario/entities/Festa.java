@@ -39,7 +39,8 @@ public class Festa {
 
     private String localizacao;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    //@ManyToMany(cascade = CascadeType.ALL) - retirei porque não se pode eliminar a pessoa, somente a festa
+    @ManyToMany
     @JoinTable(name = "pessoas_festas", 
         joinColumns = @JoinColumn(name = "festa_id", referencedColumnName = "idFesta"), 
         inverseJoinColumns = @JoinColumn(name = "pessoa_id", referencedColumnName = "idPessoa"))

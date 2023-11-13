@@ -38,10 +38,11 @@ public class Pessoa {
     private int idade;
 
     // Uma pessoa pode ter muitas habilidades
-    @OneToMany(mappedBy = "pessoa")
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL) // Já aqui, se eliminar uma pessoa terá que eliminar a habilidade também
     private Set<Habilidade> habilidades = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    //@ManyToMany(cascade = CascadeType.ALL) - retirei porque não se pode eliminar a festa, somente a pessoa
+    @ManyToMany
     @JsonBackReference
     @JoinTable(name = "pessoas_festas", 
         joinColumns = @JoinColumn(name = "pessoa_id", referencedColumnName = "idPessoa"), 
